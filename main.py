@@ -213,7 +213,8 @@ async def generate_docx(data: RecordData):
             
             # Generate and insert QR code
             qr_img_data = create_qr_code(exp.github, size=150)
-            qr_filename = f"qr_{idx}.png"
+            qr_filename = f"/tmp/qr_{idx}.png"
+
             with open(qr_filename, 'wb') as f:
                 f.write(qr_img_data.read())
             qr_images.append(qr_filename)
@@ -287,7 +288,8 @@ async def generate_docx(data: RecordData):
                 tcPr.append(tcBorders)
         
         # Save document
-        output_filename = f"{data.register_number}_Lab_Record.docx"
+        output_filename = f"/tmp/{data.register_number}_Lab_Record.docx"
+
         doc.save(output_filename)
         
         # Return file
